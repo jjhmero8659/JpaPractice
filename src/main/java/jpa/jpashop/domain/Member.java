@@ -21,6 +21,11 @@ public class Member {
 	@Embedded
 	private Address address;
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
 	private List<Order> orders = new ArrayList<>();
+
+	public void addOrder(Order order){
+		this.orders.add(order);
+		order.setMember(this);
+	}
 }
